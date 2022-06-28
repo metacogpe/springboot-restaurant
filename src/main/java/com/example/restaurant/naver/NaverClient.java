@@ -23,6 +23,6 @@ public class NaverClient {
     }
 
     public void imageSearch(){
-        
+
     }
 }
