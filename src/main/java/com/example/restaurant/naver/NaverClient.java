@@ -17,4 +17,12 @@ public class NaverClient {
 
     @Value("${naver.url.search.image}")
     private String naverImageSearchUrl;
+
+    public void localSearch(){
+
+    }
+
+    public void imageSearch(){
+        
+    }
 }
