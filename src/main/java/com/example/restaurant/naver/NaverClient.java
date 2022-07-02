@@ -1,7 +1,9 @@
 package com.example.restaurant.naver;
 
+import com.example.restaurant.naver.dto.SearchLocalReq;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import org.springframework.web.util.UriComponentsBuilder;
 
 @Component
 public class NaverClient {
@@ -18,8 +20,13 @@ public class NaverClient {
     @Value("${naver.url.search.image}")
     private String naverImageSearchUrl;
 
-    public void localSearch(){
-
+    public void localSearch(SearchLocalReq searchLocalReq){
+        // 요청 보내는 방법
+        var uri = UriComponentsBuilder.fromUriString(naverLocalSearchUrl)
+                .queryParams(searchLocalReq.toMultiValueMap())
+                .build()
+                .encode()
+                .toUri();
     }
 
     public void imageSearch(){
