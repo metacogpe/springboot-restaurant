@@ -59,7 +59,8 @@ public class NaverClient {
 
     }
 
-    public void imageSearch(){
+    // 이미지 검색 함수 작성
+    public void searchImage(){
 
     }
 }
