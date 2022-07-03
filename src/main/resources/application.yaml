@@ -7,3 +7,9 @@ naver:
     id: KT2x1EG1nX1uyB0azjvH
     secret: hK8Uz3MKJE
 
+spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+
