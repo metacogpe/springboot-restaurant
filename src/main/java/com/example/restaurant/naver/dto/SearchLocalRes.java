@@ -16,7 +16,7 @@ public class SearchLocalRes {
     private int total;
     private int start;
     private int display;
-    private String category;
+    //private String category;   // 네이버 api 문서 오류
     private List<SearchLocalItem> items;
 
 
@@ -24,6 +24,7 @@ public class SearchLocalRes {
     @NoArgsConstructor
     @AllArgsConstructor
     public static class SearchLocalItem {
+        private String category;
         private String title;
         private String link;
         private String description;
