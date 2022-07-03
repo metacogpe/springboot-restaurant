@@ -10,6 +10,9 @@ import com.example.restaurant.wishlist.repository.WishListRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 @RequiredArgsConstructor
 public class WishListService {
@@ -94,4 +97,11 @@ public class WishListService {
         return dto;
     }
 
+    public List<WishListDto> findAll() {
+        // entity stream에 대해 dto로 맵핑 후에 리스트로 collect
+        return wishListRepository.listAll()
+                .stream()
+                .map(it -> entityToDto(it))
+                .collect(Collectors.toList());
+    }
 }
