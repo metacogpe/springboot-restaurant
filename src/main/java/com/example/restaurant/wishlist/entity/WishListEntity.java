@@ -21,6 +21,6 @@ public class WishListEntity extends MemoryDbEntity {
     private String imageLink;
     private boolean  isVisit;
     private int visitCount;
-    private LocalDateTime lastVistData;
+    private LocalDateTime lastVistDate;
 
 }

@@ -5,6 +5,8 @@ import com.example.restaurant.naver.NaverClient;
 import com.example.restaurant.naver.dto.SearchImageReq;
 import com.example.restaurant.naver.dto.SearchLocalReq;
 import com.example.restaurant.wishlist.dto.WishListDto;
+import com.example.restaurant.wishlist.entity.WishListEntity;
+import com.example.restaurant.wishlist.repository.WishListRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +15,7 @@ import org.springframework.stereotype.Service;
 public class WishListService {
 
     private final NaverClient naverClient;
+    private final WishListRepository wishListRepository; // 데이터베이스 불러오기
 
     public WishListDto search(String query){
 
@@ -52,4 +55,43 @@ public class WishListService {
 
 
     }
+
+    //dto를 Entity로 변환한 다음에 저장하기
+    public WishListDto add(WishListDto wishListDto) {
+        var entity = dtoToEntity(wishListDto);            // dto를 entity로 변환
+        var saveEntity = wishListRepository.save(entity); // entity를 db에 저장
+        return entityToDto(saveEntity);
+    }
+
+    // dto를 Entity로 변환
+    private WishListEntity dtoToEntity(WishListDto wishListDto){
+        var entity = new WishListEntity();
+        entity.setIndex(wishListDto.getIndex());
+        entity.setTitle(wishListDto.getTitle());
+        entity.setCategory(wishListDto.getCategory());
+        entity.setAddress(wishListDto.getAddress());
+        entity.setRoadAddress(wishListDto.getRoadAddress());
+        entity.setHomePageLink(wishListDto.getHomePageLink());
+        entity.setImageLink(wishListDto.getImageLink());
+        entity.setVisit(wishListDto.isVisit());
+        entity.setVisitCount(wishListDto.getVisitCount());
+        entity.setLastVistDate(wishListDto.getLastVistDate());
+        return entity;
+    }
+
+    private WishListDto entityToDto(WishListEntity wishListEntity){
+        var dto = new WishListDto();
+        dto.setIndex(wishListEntity.getIndex());
+        dto.setTitle(wishListEntity.getTitle());
+        dto.setCategory(wishListEntity.getCategory());
+        dto.setAddress(wishListEntity.getAddress());
+        dto.setRoadAddress(wishListEntity.getRoadAddress());
+        dto.setHomePageLink(wishListEntity.getHomePageLink());
+        dto.setImageLink(wishListEntity.getImageLink());
+        dto.setVisit(wishListEntity.isVisit());
+        dto.setVisitCount(wishListEntity.getVisitCount());
+        dto.setLastVistDate(wishListEntity.getLastVistDate());
+        return dto;
+    }
+
 }
