@@ -29,7 +29,7 @@ public class NaverClient {
     @Value("${naver.url.search.image}")
     private String naverImageSearchUrl;
 
-    public SearchLocalRes localSearch(SearchLocalReq searchLocalReq){
+    public SearchLocalRes searchLocal(SearchLocalReq searchLocalReq){
         // 요청 주소 만들기
         var uri = UriComponentsBuilder.fromUriString(naverLocalSearchUrl)
                 .queryParams(searchLocalReq.toMultiValueMap())
